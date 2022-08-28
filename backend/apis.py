@@ -47,6 +47,7 @@ def register(data):
 
 
 def login(data):
+    print(data)
     try:
         con = utils.connect()
     except:
@@ -62,6 +63,7 @@ def login(data):
         params = [email]
         res = cur.execute(query, params)
         row = res.fetchone()
+        print(row)
         if row is None:
             return utils.prepare_response(
                 False, f"User with email {email} doesn't exist. Please register first."

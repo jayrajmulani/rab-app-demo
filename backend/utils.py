@@ -21,7 +21,7 @@ def create_db(file):
 def dict_factory(cursor, row):
     d = {}
     for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
+        d[col[0].lower()] = row[idx]
     return d
 
 
