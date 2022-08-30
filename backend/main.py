@@ -28,6 +28,16 @@ def get_population_data():
     return apis.get_population_data()
 
 
+@app.route("/get_movements_data", methods=["GET"])
+def get_movements_data():
+    return apis.get_movements_data()
+
+
+@app.route("/get_premises_data", methods=["GET"])
+def get_premises_data():
+    return apis.get_premises_data()
+
+
 @app.route("/load_data", methods=["GET"])
 def load_data():
     return apis.load_data()

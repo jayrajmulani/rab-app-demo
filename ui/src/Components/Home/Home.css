@@ -1,0 +1,43 @@
+#components-layout-demo-top-side {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .ant-row-rtl #components-layout-demo-top-side {
+    float: right;
+    margin: 16px 0 16px 24px;
+  }
+  
+  .site-layout-background {
+    background: #f0f0f0;
+  }
+  
+  .logo {
+    background-image: url("../../rab_logo.png");
+    float: left;
+    width: 120px;
+    height: 31px;
+    background-repeat: no-repeat;
+    /* margin: 16px 24px 16px 0; */
+  }
+  .collapsed_logo {
+    float: left;
+    width: 120px;
+    height: 40px;
+    margin: 16px 24px 16px 0;
+  }
+  
+  .NavBarButton {
+    float: right;
+    padding-right: 2px;
+    margin: 2px;
+  }
+  
+  .welcome {
+    padding-left: 3%;
+    padding-top: 1%;
+    float: left;
+  }

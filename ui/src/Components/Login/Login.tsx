@@ -70,7 +70,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
 				if (response.status) {
 					message.success("Login Successful.");
 					sessionStorage.setItem("loggedIn", "true");
-					sessionStorage.setItem("email", values.email);
+					sessionStorage.setItem("email", response.data.email);
+					sessionStorage.setItem("display_name", response.data.display_name);
 				} else {
 					sessionStorage.setItem("loggedIn", "false");
 					message.error(response.data, 3);
@@ -101,7 +102,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
 						}}
 						onFinish={this.onLogin}>
 						<Title className="center_title" level={3}>
-							<img src={logo} style={{ width: "70%", height: "80%" }}></img>
+							<img alt="logo" src={logo} style={{ width: "70%", height: "80%" }}></img>
 						</Title>
 						<Divider></Divider>
 						<Form.Item

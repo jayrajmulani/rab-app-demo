@@ -47,7 +47,6 @@ def register(data):
 
 
 def login(data):
-    print(data)
     try:
         con = utils.connect()
     except:
@@ -59,7 +58,7 @@ def login(data):
 
         # Check if user exists
         cur = con.cursor()
-        query = "SELECT email, password FROM USERS WHERE EMAIL = :1"
+        query = "SELECT display_name,email, password FROM USERS WHERE EMAIL = :1"
         params = [email]
         res = cur.execute(query, params)
         row = res.fetchone()
@@ -70,7 +69,9 @@ def login(data):
             )
         valid = bcrypt.checkpw(password.encode("utf-8"), row["password"])
         if valid:
-            return utils.prepare_response(True, "Login Successful")
+            return utils.prepare_response(
+                True, {"email": row["email"], "display_name": row["display_name"]}
+            )
         else:
             return utils.prepare_response(False, "Invalid Credentials.")
     except Exception as e:
@@ -139,7 +140,7 @@ def load_data():
                 "new_shipmentsstartdate",
             ]
         ]
-        query = "INSERT INTO TRANSFERS(COMPANY, REASON, SPECIES, ORIGIN_PREM_ID, DESTINATION_PREM_ID, SHIPMENT_START_DATE, COUNT_ITEMS_MOVED) VALUES (?,?,?,?,?,?,?)"
+        query = "INSERT INTO TRANSFERS(COMPANY, REASON, SPECIES, ORIGIN_PREM_ID, DESTINATION_PREM_ID, COUNT_ITEMS_MOVED, SHIPMENT_START_DATE) VALUES (?,?,?,?,?,?,?)"
         transfers = list(transfers.itertuples(index=False, name=None))
         cur.executemany(query, transfers)
         con.commit()
@@ -169,5 +170,68 @@ def get_population_data():
         utils.disconnect(con)
 
 
+def get_movements_data():
+    try:
+        con = utils.connect()
+    except:
+        return utils.prepare_response(False, "Unable to create DB connection")
+    try:
+        cur = con.cursor()
+        query = """
+            SELECT 
+                ORIGIN_PREMISE.ADDRESS AS ORIGIN_ADDRESS, 
+                ORIGIN_PREMISE.STATE AS ORIGIN_STATE, 
+                ORIGIN_PREMISE.POSTAL_CODE AS ORIGIN_POSTAL_CODE, 
+                ORIGIN_PREMISE.CITY AS ORIGIN_CITY, 
+                ORIGIN_PREMISE.NAME AS ORIGIN_NAME, 
+                ORIGIN_PREM_ID, 
+                DEST_PREMISE.NAME AS DESTINATION_NAME, 
+                DESTINATION_PREM_ID, 
+                DEST_PREMISE.ADDRESS AS DESTINATION_ADDRESS, 
+                DEST_PREMISE.STATE AS DESTINATION_STATE, 
+                DEST_PREMISE.POSTAL_CODE AS DESTINATION_POSTAL_CODE, 
+                DEST_PREMISE.CITY AS DESTINATION_CITY, 
+                ORIGIN_PREMISE.LAT AS ORIGIN_LAT, 
+                ORIGIN_PREMISE.LONG AS ORIGIN_LONG, 
+                DEST_PREMISE.LAT AS DESTINATION_LAT, 
+                DEST_PREMISE.LONG AS DESTINATION_LONG, 
+                COUNT_ITEMS_MOVED, 
+                SHIPMENT_START_DATE, 
+                SPECIES, 
+                REASON, 
+                COMPANY 
+                FROM 
+                TRANSFERS 
+                LEFT JOIN PREMISES ORIGIN_PREMISE ON ORIGIN_PREMISE.PREM_ID = TRANSFERS.ORIGIN_PREM_ID 
+                LEFT JOIN PREMISES DEST_PREMISE ON DEST_PREMISE.PREM_ID = TRANSFERS.DESTINATION_PREM_ID;        
+        """
+        res = cur.execute(query)
+        rows = res.fetchall()
+        return utils.prepare_response(True, rows)
+    except Exception as e:
+        print(e)
+        return utils.prepare_response(False, str(e))
+    finally:
+        utils.disconnect(con)
+
+
+def get_premises_data():
+    try:
+        con = utils.connect()
+    except:
+        return utils.prepare_response(False, "Unable to create DB connection")
+    try:
+        cur = con.cursor()
+        query = "SELECT PREM_ID, NAME, LAT, LONG FROM PREMISES"
+        res = cur.execute(query)
+        rows = res.fetchall()
+        return utils.prepare_response(True, rows)
+    except Exception as e:
+        print(e)
+        return utils.prepare_response(False, str(e))
+    finally:
+        utils.disconnect(con)
+
+
 # load_data()
-get_population_data()
+# get_population_data()
