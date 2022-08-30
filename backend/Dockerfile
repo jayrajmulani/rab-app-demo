@@ -3,10 +3,10 @@ FROM ubuntu:latest
 RUN apt-get update -y
 RUN apt-get install -y python3-pip python3
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/backend
+WORKDIR /usr/src/backend
 
-COPY requirements.txt /usr/src/app/
+COPY requirements.txt /usr/src/backend/
 RUN pip3 install -r requirements.txt
 
 ENTRYPOINT [ "flask" ]

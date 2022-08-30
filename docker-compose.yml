@@ -8,7 +8,7 @@ services:
     ports:
       - 4000:4000
     volumes:
-      - ./backend:/usr/src/app
+      - ./backend:/usr/src/backend
     environment:
       - FLASK_ENV=development
       - FLASK_APP=main.py
@@ -20,8 +20,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./ui/src:/usr/src/app/src
-      - ./ui/public:/usr/src/app/public
+      - ./ui/src/:/usr/src/ui/src
+      - ./ui/public/:/usr/src/ui/public
     links:
       - "backend:backend"
 

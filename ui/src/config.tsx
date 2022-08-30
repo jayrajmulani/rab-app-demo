@@ -4,7 +4,7 @@ interface Configurations {
 }
 
 const config: Configurations = {
-	baseUrl: "http://localhost:5000",
+	baseUrl: "http://localhost:4000",
 	API_KEY: "AIzaSyCajC4vdklHpbeYwK7Mu8vwbMwARRQLcNs",
 };
 

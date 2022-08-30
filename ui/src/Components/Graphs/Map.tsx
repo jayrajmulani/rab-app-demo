@@ -41,8 +41,9 @@ const Map: React.FC<MapProps> = (props: MapProps) => {
 							label={marker.label}
 							key={marker.lat}
 							icon={{
-								path: google.maps.SymbolPath.CIRCLE,
-								scale: 3,
+								path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+								scale: 2,
+								strokeColor: "red",
 							}}
 							position={marker}
 						/>

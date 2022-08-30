@@ -1,9 +1,11 @@
 FROM node:latest
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/ui
 
-COPY package.json /usr/src/app/
+WORKDIR /usr/src/ui
+
+
+COPY . /usr/src/ui/
 
 RUN npm install
 
