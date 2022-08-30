@@ -45,10 +45,8 @@ requirements, such as:
 - Having a script to run all components
 - Importing the supplied data into a well normalized schema
 
-## Submitting
+## Solution
 
-You will have until 11:59pm EST on the 31st of August to submit a github/gitlab
-link, or a zipped file via email to <gmachad@ncsu.edu> and <debling@ncsu.edu>
-with the subject Programming Challenge.
+### Data Model
 
-Good luck!!!
+![Data model](./images/Data%20Model.png?raw=true "Data Model")
