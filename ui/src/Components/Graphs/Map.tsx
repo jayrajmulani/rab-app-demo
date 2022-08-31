@@ -21,7 +21,7 @@ const Map: React.FC<MapProps> = (props: MapProps) => {
 		id: "google-map-script",
 		googleMapsApiKey: config.API_KEY,
 	});
-	const [map, setMap] = useState<google.maps.Map>();
+	const [, setMap] = useState<google.maps.Map>();
 	const onLoad = React.useCallback(function callback(map: google.maps.Map): void {
 		const bounds = new window.google.maps.LatLngBounds(props.markers[0]);
 		map.fitBounds(bounds);

@@ -3,7 +3,6 @@ import type { FormInstance } from "antd/es/form";
 import { Form, Input, Button, Typography, Modal, message, Divider } from "antd";
 import config from "../../config";
 import logo from "../../rab_logo.png";
-import "antd/dist/antd.css";
 import "./Login.css";
 const { Title } = Typography;
 interface LoginState {
