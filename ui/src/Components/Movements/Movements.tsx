@@ -194,6 +194,7 @@ export default class Movements extends React.Component<MovementProps, MovementsS
 										placement="bottomRight"
 										content={
 											<Descriptions bordered={true} title={record.origin_name} size="small" colon={false}>
+												<Descriptions.Item label="Name">{record.origin_name}</Descriptions.Item>
 												<Descriptions.Item label="Premise ID">{record.origin_prem_id}</Descriptions.Item>
 												<Descriptions.Item label="Address">{record.origin_address}</Descriptions.Item>
 												<Descriptions.Item label="City">{record.origin_city}</Descriptions.Item>
@@ -218,6 +219,7 @@ export default class Movements extends React.Component<MovementProps, MovementsS
 										placement="bottomRight"
 										content={
 											<Descriptions bordered={true} title={record.destination_name} size="small" colon={false}>
+												<Descriptions.Item label="Name">{record.destination_name} </Descriptions.Item>
 												<Descriptions.Item label="Premise ID">{record.destination_prem_id}</Descriptions.Item>
 												<Descriptions.Item label="Address">{record.destination_address}</Descriptions.Item>
 												<Descriptions.Item label="City">{record.destination_city}</Descriptions.Item>

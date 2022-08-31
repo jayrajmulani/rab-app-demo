@@ -1,6 +1,6 @@
-# Programming challenge
+# Programming challenge - RAB App Demo
 
-## User Interface
+## User Interface Overview
 
 ![Demo](./images/GIF.gif?raw=true "Demo")
 
