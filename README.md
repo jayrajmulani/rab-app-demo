@@ -65,7 +65,7 @@ This is a demo web app developed using:
 ## Getting started
 
 1. Clone the github [repository](https://github.com/jayrajmulani/rab-app-demo.git)
-2. [Install docker](https://docs.docker.com/get-docker/)
+2. [Install docker](https://docs.docker.com/get-docker/), if it's not already installed in your system!
 3. Start the docker containers [Commands mentioned below, although its just one command :) ]
 
 ## How to run the app?
